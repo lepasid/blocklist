@@ -3,7 +3,7 @@
 GITHUB_TOKEN=INPUT_TOKEN_HERE # Taroh tokenmu disini
 TARGET_DIR=~/Documents/lepasid_host
 REPO_URL=https://github.com/lepasid/blocklist
-FILE_NAME="$(date +"%Y%m%d")"
+FILE_NAME="$(date +"%Y-%m-%d")"
 SOURCE_URL=https://trustpositif.kominfo.go.id/assets/db/domains_isp
 
 curl --insecure -o "$TARGET_DIR/$FILE_NAME" "$SOURCE_URL"
