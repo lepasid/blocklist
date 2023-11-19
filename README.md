@@ -16,7 +16,11 @@ GIT_USERNAME=YOUR_USERNAME
 GIT_EMAIL=YOUR_EMAIL
 
 cd "$TARGET_DIR"
-rm hosts
+rm domains
+if [ -e "$FILE_NAME" ]; then
+    rm "$FILE_NAME"
+fi
+
 curl --insecure -o "$TARGET_DIR/domains" "$SOURCE_URL"
 cp hosts $FILE_NAME
 
