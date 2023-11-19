@@ -22,7 +22,7 @@ if [ -e "$FILE_NAME" ]; then
 fi
 
 curl --insecure -o "$TARGET_DIR/domains" "$SOURCE_URL"
-cp hosts $FILE_NAME
+cp domains $FILE_NAME
 
 git add domains
 git add "$FILE_NAME"
