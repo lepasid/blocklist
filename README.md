@@ -15,16 +15,20 @@ SOURCE_URL=KOMINFO'S SITE, IF YOU WANT TO KNOW WHAT IT IS JOIN OUR DISCORD
 GIT_USERNAME=YOUR_USERNAME
 GIT_EMAIL=YOUR_EMAIL
 
-curl --insecure -o "$TARGET_DIR/$FILE_NAME" "$SOURCE_URL"
 cd "$TARGET_DIR"
+rm hosts
+curl --insecure -o "$TARGET_DIR/domains" "$SOURCE_URL"
+cp hosts $FILE_NAME
 
+git add domains
 git add "$FILE_NAME"
 git commit -m "Add $FILE_NAME"
 git config user.name "$GIT_USERNAME"
 git config user.email "$GIT_EMAIL"
+git rebase
 git push -u origin main
 
-cd ../
+cd ..
 echo "Script completed successfully."
 ```
 5. chmod +x YOUR_FILE.sh
