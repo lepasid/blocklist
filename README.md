@@ -7,7 +7,7 @@ Uncensored Kominfo blocklist taken directly from their site
 ```
 #!/bin/bash
 # 4. git clone https://YOUR_USERNAME:YOUR_TOKEN@github.com/lepasid/blocklist.git in your Documents folder
-# (If you just git clone normally, do git remote set-url origin https://YOUR_USERNAME:YOUR_TOKEN@github.com/lepasid/blocklist.git in the $TARGET_DIR folder)
+# (If you just git clone normally, do git remote add origin https://YOUR_USERNAME:YOUR_TOKEN@github.com/lepasid/blocklist.git in the $TARGET_DIR folder)
 
 TARGET_DIR=~/Documents/blocklist
 FILE_NAME="$(date +"%Y-%m-%d")"
