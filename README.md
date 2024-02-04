@@ -22,11 +22,9 @@ if [ -e "$FILE_NAME" ]; then
 fi
 
 curl --insecure -o "$TARGET_DIR/domains" "$SOURCE_URL"
-cp domains $FILE_NAME
 
 git add domains
-git add "$FILE_NAME"
-git commit -m "Add $FILE_NAME"
+git commit -m "Update"
 git config user.name "$GIT_USERNAME"
 git config user.email "$GIT_EMAIL"
 git rebase
