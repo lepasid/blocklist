@@ -1,5 +1,7 @@
 # Kominfo Blocklist
-Uncensored Kominfo blocklist taken directly from their site
+Uncensored Kominfo blocklist taken directly from their site  
+If you wanna use this data easily, we made an "API", documentation is at [lepasid/kominfod](https://github.com/lepasid/kominfod)
+
 ## Steps to Update this
 1. Get repo perms
 2. Use Linux
