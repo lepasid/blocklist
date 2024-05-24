@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: 2024
 
       - name: Set up Git
         run: |
@@ -31,7 +33,6 @@ jobs:
           git checkout main -- domains
           mv domains "$FILE_NAME"
           
-          git add .
           git add "$FILE_NAME"
           git commit -m "Update on $FILE_NAME"
           git push -u origin 2024
