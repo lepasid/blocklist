@@ -32,4 +32,6 @@ jobs:
           git checkout -b update-$FILE_NAME
           git add "$FILE_NAME"
           git commit -m "Update on $FILE_NAME"
+          git fetch origin 2024
+          git merge origin/2024
           git push origin update-$FILE_NAME:2024
