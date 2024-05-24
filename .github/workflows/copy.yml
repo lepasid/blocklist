@@ -28,7 +28,8 @@ jobs:
           if [ -e "$FILE_NAME" ]; then
             rm "$FILE_NAME"
           fi
-          cp domains "$FILE_NAME"
+          git checkout main -- domains
+          mv domains "$FILE_NAME"
           
           git add "$FILE_NAME"
           git commit -m "Update on $FILE_NAME"
