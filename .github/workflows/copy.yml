@@ -13,7 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-         ref: 2024, main
+         ref: 2024
+              main
          fetch-depth: 0
 
       - name: Set up Git
