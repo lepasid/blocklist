@@ -12,10 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-         ref: 2024
-              main
-         fetch-depth: 0
 
       - name: Set up Git
         run: |
@@ -24,19 +20,16 @@ jobs:
           git remote set-url origin "https://${{ secrets.GH_TOKEN }}@github.com/lepasid/blocklist.git"
 
       - name: Set up time zone
-        run: export TZ=Asia/Jakarta
+        run: echo "TZ=Asia/Jakarta" >> $GITHUB_ENV
 
-      - name: Update Domains
+      - name: Copy and Update Domains
         run: |
           FILE_NAME=$(date +"%Y-%m-%d")
-          if [ -e "$FILE_NAME" ]; then
-            rm "$FILE_NAME"
-          fi
           
-          git fetch origin main
-          git checkout main -- domains
-          mv domains "$FILE_NAME"
-          
+          git fetch origin
+          git checkout main
+          cp domains "$FILE_NAME"
+          git checkout -b update-$FILE_NAME
           git add "$FILE_NAME"
           git commit -m "Update on $FILE_NAME"
-          git push -u origin 2024
+          git push origin update-$FILE_NAME:2024
