@@ -1,9 +1,9 @@
-name: Update Domain
+name: Update Domain [2024]
 
 on:
   push:
     branches:
-      - main
+      - 2024
 
 jobs:
   copy_domains:
@@ -32,4 +32,4 @@ jobs:
           
           git add "$FILE_NAME"
           git commit -m "Update on $FILE_NAME"
-          git push -u origin main
+          git push -u origin 2024
