@@ -33,5 +33,5 @@ jobs:
           git add "$FILE_NAME"
           git commit -m "Update on $FILE_NAME"
           git fetch origin 2024
-          git merge origin/2024
+          git merge origin/2024 --allow-unrelated-histories
           git push origin update-$FILE_NAME:2024
