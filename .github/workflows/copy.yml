@@ -33,5 +33,13 @@ jobs:
           git add "$FILE_NAME"
           git commit -m "Update on $FILE_NAME"
           git fetch origin 2024
-          git merge origin/2024 --allow-unrelated-histories
+          git merge origin/2024 --allow-unrelated-histories || {
+              echo "Merge conflict!!!!!!!!!!!!!!!!!!"
+              git diff --name-only --diff-filter=U
+              git checkout --ours "$FILE_NAME"
+              git add "$FILE_NAME"
+              git checkout --theirs domains
+              git add domains
+              git commit -m "Resolved merge conflicts in 2024-05-25 and domains"
+          }
           git push origin update-$FILE_NAME:2024
