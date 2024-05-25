@@ -29,13 +29,6 @@ jobs:
           FILE_NAME=$(date +"%Y-%m-%d")
           cp domains "$FILE_NAME"
 
-      - name: Remove existing file if exists
-        run: |
-          FILE_NAME=$(date +"%Y-%m-%d")
-          if [ -f "$FILE_NAME" ]; then
-            rm "$FILE_NAME"
-          fi
-
       - name: Checkout or create 2024 branch
         run: |
           git fetch origin
@@ -46,11 +39,12 @@ jobs:
             git checkout -b 2024
           fi
 
-      - name: Add and commit new file
+      - name: Copy and commit new file
         run: |
           FILE_NAME=$(date +"%Y-%m-%d")
+          cp domains "$FILE_NAME"
           git add "$FILE_NAME"
-          git commit -m "Add $FILE_NAME"
+          git commit -m "Update $FILE_NAME" --allow-empty
 
       - name: Push changes to 2024 branch
         run: |
