@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout main branch
         uses: actions/checkout@v2
+        with:
+          ref: main
 
       - name: Set up Git
         run: |
@@ -22,24 +24,27 @@ jobs:
       - name: Set up time zone
         run: echo "TZ=Asia/Jakarta" >> $GITHUB_ENV
 
-      - name: Copy and Update Domains
+      - name: Copy and rename domains file
         run: |
           FILE_NAME=$(date +"%Y-%m-%d")
-          
-          git fetch origin
-          git checkout main
           cp domains "$FILE_NAME"
-          git checkout -b update-$FILE_NAME
+
+      - name: Checkout or create 2024 branch
+        run: |
+          git fetch origin
+          if git rev-parse --verify origin/2024; then
+            git checkout 2024
+            git pull origin 2024
+          else
+            git checkout -b 2024
+          fi
+
+      - name: Add and commit new file
+        run: |
+          FILE_NAME=$(date +"%Y-%m-%d")
           git add "$FILE_NAME"
-          git commit -m "Update on $FILE_NAME"
-          git fetch origin 2024
-          git merge origin/2024 --allow-unrelated-histories || {
-              echo "Merge conflict!!!!!!!!!!!!!!!!!!"
-              git diff --name-only --diff-filter=U
-              git checkout --ours "$FILE_NAME"
-              git add "$FILE_NAME"
-              git checkout --theirs domains
-              git add domains
-              git commit -m "Resolved merge conflicts in 2024-05-25 and domains"
-          }
-          git push origin update-$FILE_NAME:2024
+          git commit -m "Add $FILE_NAME"
+
+      - name: Push changes to 2024 branch
+        run: |
+          git push origin 2024
