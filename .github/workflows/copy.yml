@@ -29,6 +29,13 @@ jobs:
           FILE_NAME=$(date +"%Y-%m-%d")
           cp domains "$FILE_NAME"
 
+      - name: Remove existing file if exists
+        run: |
+          FILE_NAME=$(date +"%Y-%m-%d")
+          if [ -f "$FILE_NAME" ]; then
+            rm "$FILE_NAME"
+          fi
+
       - name: Checkout or create 2024 branch
         run: |
           git fetch origin
